@@ -1,6 +1,7 @@
 package com.teamtreehouse.model;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Player implements Comparable<Player>, Serializable {
   private static final long serialVersionUID = 1L;
@@ -35,9 +36,20 @@ public class Player implements Comparable<Player>, Serializable {
 
   @Override
   public int compareTo(Player other) {
-    // We always want to sort by last name then first name
-    return 0;
+    // Compare by last name, then by first name, then by height
+    int lastNameComparison = this.lastName.compareTo(other.lastName);
+    if (lastNameComparison != 0) {
+      return lastNameComparison;
+    }
+
+    int firstNameComparison = this.firstName.compareTo(other.firstName);
+    if (firstNameComparison != 0) {
+      return firstNameComparison;
+    }
+
+    return Integer.compare(this.heightInInches, other.heightInInches);
   }
+
 
   @Override
   public boolean equals(Object o) {
@@ -46,19 +58,16 @@ public class Player implements Comparable<Player>, Serializable {
 
     Player player = (Player) o;
 
-    if (heightInInches != player.heightInInches) return false;
-    if (previousExperience != player.previousExperience) return false;
-    if (!firstName.equals(player.firstName)) return false;
-    return lastName.equals(player.lastName);
-
+    return firstName.equals(player.firstName) && lastName.equals(player.lastName);
   }
 
   @Override
   public int hashCode() {
-    int result = firstName.hashCode();
-    result = 31 * result + lastName.hashCode();
-    result = 31 * result + heightInInches;
-    result = 31 * result + (previousExperience ? 1 : 0);
-    return result;
+    return Objects.hash(firstName, lastName); // Use only firstName and lastName for hashCode
+  }
+
+  @Override
+  public String toString() {
+    return firstName + " " + lastName;
   }
 }
