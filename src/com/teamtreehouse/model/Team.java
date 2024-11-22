@@ -43,12 +43,28 @@ public class Team implements Comparable<Team> {
      * Adds a player to the team.
      */
     public boolean addPlayer(Player player) {
+        // Check if the team already has 11 players
+        if (players.size() >= 11) {
+            System.out.printf("Cannot add player %s %s. Team '%s' already has 11 players.%n",
+                    player.getFirstName(), player.getLastName(), teamName);
+            return false;
+        }
+
         boolean added = players.add(player);
         if (!added) {
             System.out.println("Duplicate player not added: " + player.getFirstName() + " " + player.getLastName());
         }
         return added;
     }
+
+    /**
+     * Removes a player from the team.
+     */
+    public boolean removePlayer(Player player) {
+        boolean removed = players.remove(player); // Use Set's remove method
+        return removed;
+    }
+
 
 
 

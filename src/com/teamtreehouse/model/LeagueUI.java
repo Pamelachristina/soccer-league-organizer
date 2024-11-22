@@ -3,14 +3,17 @@ package com.teamtreehouse.model;
 public class LeagueUI {
     // Method to display the main menu
     public static void displayMenu () {
-        System.out.println("Main Menu:");
-        System.out.println("1. Create Team");
-        System.out.println("2. Add Player");
-        System.out.println("3. Remove Player");
-        System.out.println("4. Display League Balance Report");
-        System.out.println("5. View Roster");
-        System.out.println("6. Exit");
-        System.out.println();
+        System.out.println("\nMain Menu:");
+        System.out.println("===================================");
+        System.out.println(" 1. 🏟️  Create a Team");
+        System.out.println(" 2. 🏃  Add a Player to a Team");
+        System.out.println(" 3. ❌  Remove a Player from a Team");
+        System.out.println(" 4. 📊  View League Balance Report");
+        System.out.println(" 5. 📝  View Team Roster");
+        System.out.println(" 6. 📏  View Team Height Report");
+        System.out.println(" 7. Exit");
+        System.out.println("===================================");
+
     }
 
 

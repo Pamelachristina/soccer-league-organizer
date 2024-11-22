@@ -1,7 +1,7 @@
 package com.teamtreehouse.model;
 
 import java.io.Serializable;
-import java.util.Objects;
+
 
 public class Player implements Comparable<Player>, Serializable {
   private static final long serialVersionUID = 1L;
@@ -34,6 +34,9 @@ public class Player implements Comparable<Player>, Serializable {
     return previousExperience;
   }
 
+
+
+
   @Override
   public int compareTo(Player other) {
     // Compare by last name, then by first name, then by height
@@ -58,12 +61,20 @@ public class Player implements Comparable<Player>, Serializable {
 
     Player player = (Player) o;
 
-    return firstName.equals(player.firstName) && lastName.equals(player.lastName);
+    return heightInInches == player.heightInInches &&
+            previousExperience == player.previousExperience &&
+            firstName.equals(player.firstName) &&
+            lastName.equals(player.lastName);
+
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(firstName, lastName); // Use only firstName and lastName for hashCode
+    int result = firstName.hashCode();
+    result = 31 * result + lastName.hashCode();
+    result = 31 * result + heightInInches;
+    result = 31 * result + (previousExperience ? 1 : 0);
+    return result;
   }
 
   @Override
